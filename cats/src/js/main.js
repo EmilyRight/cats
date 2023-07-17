@@ -1,8 +1,8 @@
 import $ from 'jquery';
-import { WOW } from './vendor/wow.min.js';
+import { WOW } from './vendor/wow.min';
 import { gaPush, gtmSet } from './components/gtm-events';
 
-import { detectDevice } from './components/detectDevice';
+import detectDevice from './components/detectDevice';
 // import {videoTeaser} from './components/videoTeaser';
 import { closeModal, openModal } from './components/modal';
 import {
@@ -14,7 +14,8 @@ window.jQuery = window.$ = $;
 /// /////// DocReady //////////
 $(() => {
   detectDevice(); // videoTeaser();
-  new WOW().init(); gtmSet();
+  new WOW().init();
+  gtmSet();
 
   const $body = document.querySelector('body');
 
@@ -73,7 +74,7 @@ function submitCustomFormRequest() {
   const $submitBtn = document.querySelector('.js-new-req');
   const innField = document.querySelector('#innField');
 
-  const inn = (innField.value.lenght >= 10) ? innField.value : '';
+  const inn = (innField.value.length >= 10) ? innField.value : '';
   // document.querySelector('#innField').value || '';
   const name = document.querySelector('#nameField').value;
   const phone = document.querySelector('#telField').value;
@@ -152,7 +153,10 @@ function once(fn, context) {
 }
 
 /// Unique ID
-function dec2hex(dec) { return (`0${dec.toString(16)}`).substr(-2); }
+function dec2hex(dec) {
+  return (`0${dec.toString(16)}`).substr(-2);
+}
+
 function generateId(len) {
   const arr = new Uint8Array((len || 40) / 2);
   window.crypto.getRandomValues(arr);
