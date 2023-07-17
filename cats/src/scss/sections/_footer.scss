@@ -1,0 +1,16 @@
+.section--footer{
+  background: #1f2229;
+  .section-layer{padding:3rem 0;display: block;
+    .box-content{width: 100%;max-width: 100%;
+      text-align: center;color: $color-gray0;font-size: 1.6rem;line-height: 1.38;
+    }
+
+    .text-link{color: $color-gray0;text-decoration: underline;
+      &:hover{text-decoration: none;}
+    }
+  }
+
+  @media (max-width: 600px){
+    .section-layer{padding-bottom:5.4rem;}
+  }
+}

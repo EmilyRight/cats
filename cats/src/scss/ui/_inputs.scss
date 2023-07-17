@@ -1,0 +1,69 @@
+input[type='number'] {-moz-appearance:textfield;}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {-webkit-appearance: none;margin: 0;}
+
+
+//INPUTS
+.text-field-holder{position: relative;margin-bottom: 2rem;
+  label{position:absolute;z-index: 1;max-width:87%;top:0;left:0;line-height:4.8rem;
+    color:$color-lightgray2;
+    overflow: hidden;text-overflow: ellipsis;text-align: left;white-space: nowrap;
+    transition: .2s;
+  }
+  input{&.text-field{height: 5rem;};}
+
+  .text-field{width: 100%;display: block;
+    padding: 0 3rem 0 2rem;margin: 0 0 2rem;min-width: 9rem;
+    border: none;border-bottom: .2rem solid $color-lightgray2;padding-left: 0;
+    background-color:transparent;margin-bottom: 0!important;
+    position: relative;z-index: 1;
+    transition: .4s;
+
+    &.hasDatepicker{cursor: pointer;
+      +.ico{position: absolute;right: 0;font-size: 2.6rem;top:1.3rem;}
+    }
+    &:disabled, &.disabled,
+    &.hasDatepicker.disabled, &.hasDatepicker:disabled {cursor: default;
+      color:$color-lightgray2 !important;background: #f2f3f4 !important;border-color:$color-gray0 !important;
+      ~ .image-wrap{z-index: 2;color:$color-gray0;}
+      ~ .ico{opacity: .5}
+    }
+    &.text-field-unbordered {border: 0;}
+  }
+
+  .error-text{color:$color-red2;font-size: .8em;display: block;margin: .5rem 0;
+    .icon{font-size: 4rem;vertical-align: middle;display:inline-block}
+    span{vertical-align: middle;display: inline-block;}
+  }
+
+  &.text-focused{
+    .text-field{height:6rem}
+  }
+  &.text-active{
+    label{top:0;font-size: 1.3rem;line-height:2.2rem;}
+    .text-field{padding-top: 1.9rem;border-color: $color-dark}
+  }
+  &.text-error{
+    //label {color:$color-red2}
+    .text-field{border-color:$color-red2;color:$color-red2;
+      overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
+      padding-right: 2rem;
+      //background-image:url(../img/icons/alert-small.svg);
+      background-repeat: no-repeat;background-position: 100% 50%;
+    }
+
+  }
+}
+
+
+//lists
+.form-list{//@extend %listreset;@extend %clearfix;
+  padding-bottom: 20px;
+  &.form-list-horizontal {
+    li {display: inline-block;vertical-align: top;margin-right: 40px;
+      &:last-child {margin-right: 0;}
+    }
+  }
+
+  &.form-list-centered {text-align: center;}
+}

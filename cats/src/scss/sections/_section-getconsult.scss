@@ -1,0 +1,29 @@
+.section--get-consult {background: #F3F5F6;
+  .section-layer {
+    padding-top: 3.6rem;padding-bottom: 3.6rem;
+    display: flex;justify-content: space-between;
+  }
+  .box-content{flex:50% 0 0;
+    &__title{font-size:2.8rem;line-height: 1.29;margin-bottom: 1rem;}
+    &__text p{font-size:1.9rem }
+  }
+  .box-pic{
+    padding-left: 3rem;
+    display: flex;justify-content: space-between;
+
+    .pic-layer--mail{width: 40%;
+      img{display: block;max-width: 100%;width: 100%;
+        margin: -50% auto;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .section-layer{flex-direction: column;
+      .box-pic{flex-direction:column-reverse;margin: 0 auto;padding: 0;}
+      .pic-layer--mail{width: 28rem;margin-left: 7%;margin-top: -5rem;
+        img{margin: 0 auto}
+      }
+    }
+  }
+}

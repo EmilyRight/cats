@@ -1,0 +1,33 @@
+@import "plugins/animate";
+
+//// page animation ///
+@keyframes downCube {
+  0% {
+    transform: translateY(-5em) scale(1, 1);
+    opacity: 0.1;
+  }
+  80% {
+    transform: translateY(0) scale(1, 1);
+    opacity: 1;
+  }
+  90% {
+    transform: translateY(0.2em) scale(1.2, 0.7);
+    opacity: 1;
+  }
+  99% {
+    transform: translateY(0) scale(1, 1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1, 1);
+    opacity: 1;
+  }
+}
+@keyframes rotateClocksLoader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

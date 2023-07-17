@@ -1,0 +1,75 @@
+//CHECKBOXES + RADIO
+.radio{display: none}
+.radio-label{position: relative;display: block;white-space: normal;cursor:pointer;
+  min-height: 24px;line-height: 22px;padding: 1px 0 20px 33px;-webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+  outline: none;
+
+  &:before{position: absolute;top: 0;left: 0;content: '';
+    width: 24px;height: 24px;
+    border: 2px solid $color-gray0;border-radius: 50%;background: #fff}
+  &:after{content: ''}
+  &:hover{
+    &:before{border-color:$color-black}
+  }
+
+  .network {float: left;font-size: 22px;
+    line-height: 22px;font-family: 'tele2_displayserif-bold';
+    font-weight: normal;margin: 0 20px 0 0;width: 90px;
+  }
+  .note{font-size: 14px;line-height: 20px;color: $color-lightgray2;padding-top: 10px;display: block;}
+
+  p{overflow:hidden;margin: 0;font-size: 1.6rem;line-height: 1.38;}
+}
+
+.radio.error + .radio-label{ &:before {border-color:$color-red2}}
+.radio:checked+.radio-label:before{background: $color-black;border-color: $color-black}
+.radio:checked+.radio-label:after{content: '';position: absolute;
+  top: 8px;left: 8px;width: 8px;height: 8px;
+  border-radius: 50%;
+  background:#fff;
+}
+.radio:disabled + .radio-label{cursor: default;
+  &:before{background: #f2f3f4;border-color: #a7abaf !important;
+  }
+}
+.radio:checked:disabled + .radio-label{ &:after{opacity: 0.3}}
+
+
+//RADIOTABS
+.radio-tab_group{display: flex;align-items: center;flex-wrap: wrap}
+.radio-tab{padding:0;display: inline-block;margin-bottom: 1.8rem;
+  .radio-tab__label{
+    font-size: 1.6rem;
+    padding:1em 3em 1em .8em;
+    line-height: 1;
+    border:2px solid $color-lightgray2;border-radius: 4px;margin-right: 1rem;
+    transition: .4s;will-change: border-color;
+
+    &:before{background: #fff !important;border-color: $color-lightgray2;
+      height:1.15em;width:1.15em;top:calc(50% - .65em);
+      left:auto !important;right:.8em;box-sizing: border-box;
+      will-change: border;transition: border .2s;
+    }
+    &:after{display: none;}
+    &:hover{border-color: $color-black}
+  }
+  label{@extend .radio-tab__label;}
+
+  &.active .radio-tab__label,
+  input:checked + .radio-tab__label{border-color: $color-black;
+    &:before{border:.4em solid $color-lightgray2;}
+  }
+}
+
+
+//Checkbox
+.checkbox {@extend .radio;}
+.checkbox-label{@extend .radio-label; &:before {border-radius: 0}}
+.checkbox:checked + .checkbox-label{
+  &:after{position: absolute;display: inline-block;transform: rotate(-45deg);
+    top:7px;left:6px;
+    width: 12px;height:7px;
+    border-radius: 0;background: transparent;
+    border-left:2px solid #fff;border-bottom:2px solid #fff;
+  }
+}
