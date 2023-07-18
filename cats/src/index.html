@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru" prefix="og://ogp.me/ns#">
   <head>
-    <title>Таргетированные SMS-рассылки Tele2</title>
+    <title>Корпоративная АТС от Tele2</title>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="telephone=no" name="format-detection" />
@@ -78,18 +78,18 @@
     <meta content="#1f2229" name="theme-color" />
     <!--OG--->
     <meta
-      content="Запускайте таргетированные SMS-рассылки по собственной базе абонентов Tele2. Отправляйте сообщения только потенциальной целевой аудитории. Даже при небольшом бюджете"
+      content="Настройте прием звонков от клиентов как в большой компании: быстро внедрить телефонию без it-специалистов легко с Корпоративной АТС от Tele2."
       name="description"
     />
     <meta content="ru_RU" property="og:locale" />
-    <meta content="Таргетированные SMS-рассылки Tele2" property="og:title" />
+    <meta content="Корпоративная АТС от Tele2" property="og:title" />
     <meta
-      content="Запускайте таргетированные SMS-рассылки по собственной базе абонентов Tele2. Отправляйте сообщения только потенциальной целевой аудитории. Даже при небольшом бюджете"
+      content="Настройте прием звонков от клиентов как в большой компании: быстро внедрить телефонию без it-специалистов легко с Корпоративной АТС от Tele2."
       property="og:description"
     />
-    <meta content="Таргетированные SMS-рассылки Tele2" name="twitter:title" />
+    <meta content="Корпоративная АТС от Tele2" name="twitter:title" />
     <meta
-      content="Запускайте таргетированные SMS-рассылки по собственной базе абонентов Tele2. Отправляйте сообщения только потенциальной целевой аудитории. Даже при небольшом бюджете"
+      content="Настройте прием звонков от клиентов как в большой компании: быстро внедрить телефонию без it-специалистов легко с Корпоративной АТС от Tele2."
       name="twitter:description"
     />
     <meta content="summary_large_image" name="twitter:card" />
@@ -120,7 +120,7 @@
   </head>
   <body>
     <div class="svgs">
-      <svg xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <g id="page-logo">
           <path
             class="t2logo"
@@ -207,20 +207,21 @@
               <svg viewBox="0 0 88 33" width="100%">
                 <use xlink:href="#page-logo"></use>
               </svg>
+              <!-- <img src="./img/logo.svg" alt="Tele2" /> -->
             </a>
           </div>
         </div>
         <div class="teaser-body">
           <div class="container">
             <div class="teaser-body__text">
-              <h1 class="bigtext">КОРПОРАТИВНАЯ АТС</h1>
+              <h1 class="bigtext">Корпоративная АТС</h1>
 
               <p class="subtext">Умная телефония без лишних затрат</p>
               <button
                 class="btn btn--main js-tryit js-gtm-event wow fadeIn"
                 data-wow-delay=".8s"
-                data-event="btn_try"
-                data-section="teaser"
+                data-event="conv_try-tizer"
+                data-section="formLocation_tizer"
               >
                 <span class="teaser-more__txt"
                   >Получить 7&nbsp;дней бесплатно</span
@@ -281,8 +282,8 @@
           <div class="btns-box wow fadeInUp" data-wow-delay=".8s">
             <button
               class="btn btn--main js-tryit js-gtm-event"
-              data-event="button_try"
-              data-section="section-about"
+              data-event="conv_try-block"
+              data-section="formLocation_block"
             >
               Получить 7&nbsp;дней бесплатно
             </button>
@@ -298,24 +299,18 @@
               </h3>
 
               <p class="gift-box__text">
-                Получите золотой или серебряный городской номер при подключении
-                Корпоративной АТС.
+                Получите золотой или серебряный городской номер
+                при&nbsp;подключении Корпоративной&nbsp;АТС.
               </p>
 
               <div class="gift-box__buttons">
                 <button
                   class="btn btn--main js-tryit js-gtm-event"
-                  data-event="get_present"
-                  data-section="section--gift"
+                  data-event="present"
+                  data-section="formLocation_present"
                 >
                   Получить подарок
                 </button>
-                <a
-                  href="https://s3.tele2.ru/ds-site/docs/B2B/sms-target/rules-promotion-when-buying-target-balance.pdf"
-                  class="text-link js-gtm-event"
-                  target="_blank"
-                  >Подробности акции</a
-                >
               </div>
             </div>
             <div class="gift-box__pic">
@@ -381,8 +376,8 @@
             <button
               class="btn js-gtm-event js-tryit wow fadeIn"
               data-wow-delay=".6s"
-              data-event="btn_request"
-              data-section="section-join"
+              data-event="conv_consultation"
+              data-section="formLocation_consultation"
             >
               Получить&nbsp;консультацию
             </button>
@@ -398,7 +393,7 @@
                 class="text-link js-gtm-event"
                 data-event="rules-link"
                 data-section="section-footer"
-                href="https://s3.tele2.ru/ds-site/docs/B2B/options/price-SMS-target.pdf"
+                href="https://tele2.ru/business/corp-pbx"
                 target="_blank"
                 >Подробное&nbsp;описание</a
               >
@@ -412,10 +407,11 @@
       <div class="modal-box" id="req-modal-box">
         <div class="modal-box__header">
           <h3>Заявка</h3>
-          <div class="close js-gtm-event" data-event="close-modal-box">
-            <svg viewBox="0 0 24 24" width="100%">
-              <use xlink:href="#close"></use>
-            </svg>
+          <div
+            class="modal-box__close-icon js-gtm-event"
+            data-event="close-modal-box"
+          >
+            <span class="modal-box__close"></span>
           </div>
         </div>
         <div class="modal-box__body">
@@ -547,7 +543,7 @@
         </div>
         <div class="modal-box__actions">
           <div>
-            <span class="btn close js-gtm-event" data-event="closeSuccessPopup"
+            <span class="btn close js-gtm-event" data-event="closeErrorPopup"
               >Закрыть</span
             >
           </div>

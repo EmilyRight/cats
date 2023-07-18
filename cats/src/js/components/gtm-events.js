@@ -10,7 +10,7 @@ export function gtmSet() {
 
     if (target) {
       const eventBlock = target;
-      const dataClick = {
+      const clickEventData = {
         eventAction: 'click',
         eventLabel: eventBlock.getAttribute('data-event') || null,
         eventLocation: eventBlock.getAttribute('data-section') || null,
@@ -18,14 +18,26 @@ export function gtmSet() {
         eventCategory: eventBlock.getAttribute('data-event-category') || 'Interactions',
       };
 
-      gaPush(dataClick);
+      gaPush(clickEventData);
     }
   });
 
   /// scroll event
   let pageScrolling = false;
-  document.addEventListener('scroll', (e) => {
-    const currentPos = 100 * $(window).scrollTop() / ($(document).height() - $(window).height());
+  const scrollHeight = Math.max(
+    document.body.scrollHeight,
+    document.documentElement.scrollHeight,
+    document.body.offsetHeight,
+    document.documentElement.offsetHeight,
+    document.body.clientHeight,
+    document.documentElement.clientHeight,
+  );
+
+  const { clientHeight } = document.documentElement;
+
+  document.addEventListener('scroll', () => {
+    const currentPos = 100 * (window.scrollY / (scrollHeight - clientHeight));
+
     if (!pageScrolling) {
       window.requestAnimationFrame(() => {
         scrollEvt(currentPos);
@@ -34,44 +46,43 @@ export function gtmSet() {
       pageScrolling = true;
     }
   });
-
   const scrollGtm = {
     10: '', 30: '', 50: '', 70: '', 90: '',
   };
   function scrollEvt(scrollPos) {
-    const points = Object.entries(scrollGtm);
-    points.forEach(([p, val]) => {
-      if (~~scrollPos >= p) {
-        delete scrollGtm[p];
-        scrollEventPush(p);
+    const points = Object.keys(scrollGtm);
+    points.forEach((point) => {
+      if (scrollPos >= point) {
+        delete scrollGtm[point];
+        scrollEventPush(point);
       }
     });
   }
 
-  function scrollEventPush(p) {
+  function scrollEventPush(scrolledPercent) {
     const scrollEventData = {
       eventAction: 'scroll',
-      eventLabel: 'scrollPage-' + `${p}%`,
+      eventLabel: `scrollPage-${scrolledPercent}%`,
       eventCategory: 'Interactions',
     };
     gaPush(scrollEventData); // console.log(scrollEventData)
   }
 }
 
-export function gaPush(d) {
+export function gaPush(eventData) {
   const fullEventData = {
-    eventLabel: d.eventLabel,
-    eventLocation: d.eventLocation || null, // data-section
-    eventContext: d.eventContext || null,
+    eventLabel: eventData.eventLabel,
+    eventLocation: eventData.eventLocation || null, // data-section
+    eventContext: eventData.eventContext || null,
     hitsTime: Date.now(),
     requestId: generateId(7),
     firingOptions: 'onesPerEvent',
     event: 'event',
     eventStream: 'flight',
-    eventAction: d.eventAction,
-    eventCategory: d.eventCategory,
-    eventContent: d.eventContent || null,
-    eventValue: d.eventValue || null,
+    eventAction: eventData.eventAction,
+    eventCategory: eventData.eventCategory,
+    eventContent: eventData.eventContent || null,
+    eventValue: eventData.eventValue || null,
     ecommerce: null,
     ecommerceAction: false,
     noninteraction: false,
@@ -79,9 +90,13 @@ export function gaPush(d) {
     /// Unique ID
   function generateId(len) {
     const arr = new Uint8Array((len || 40) / 2);
-    window.crypto.getRandomValues(arr); return Array.from(arr, dec2hex).join('');
+    window.crypto.getRandomValues(arr);
+    return Array.from(arr, dec2hex).join('');
   }
-  function dec2hex(dec) { return (`0${dec.toString(16)}`).substr(-2); }
+
+  function dec2hex(dec) {
+    return (`0${dec.toString(16)}`).substring(-2);
+  }
 
   try {
     dataLayer.push(fullEventData);

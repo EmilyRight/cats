@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import { WOW } from './vendor/wow.min';
-import { gaPush, gtmSet } from './components/gtm-events';
+// import { gaPush, gtmSet } from './components/gtm-events';
 
 import detectDevice from './components/detectDevice';
 // import {videoTeaser} from './components/videoTeaser';
@@ -8,14 +8,16 @@ import { closeModal, openModal } from './components/modal';
 import {
   fieldListener, validateFields, keyField, prepField,
 } from './components/inputs';
+import GTMEvents from './components/gtmEvents';
 
 window.jQuery = window.$ = $;
-
 /// /////// DocReady //////////
+const GTM = new GTMEvents();
 $(() => {
   detectDevice(); // videoTeaser();
   new WOW().init();
-  gtmSet();
+  // gtmSet();
+  GTM.addEventListeners();
 
   const $body = document.querySelector('body');
 
@@ -81,7 +83,7 @@ function submitCustomFormRequest() {
 
   const siteId = localStorage.getItem('siteId') || 'siteMSK';
   const url = `api/customForm/submission?siteId=${siteId}&formId=CrmMyTeamRequest`;
-  // const tariffFrontName = 'SMS-target';
+  // const tariffFrontName = 'corp-ats';
 
   const requestBody = {
     MainContact: name,
@@ -90,7 +92,7 @@ function submitCustomFormRequest() {
     requestId: `${Date.now()}_${Math.random().toString().slice(2, 12)}`,
     region: siteId.slice(4).toLowerCase(),
     InnCompany: inn,
-    AdditionalInformation: 'Подключение услуги SMS - Таргет',
+    AdditionalInformation: 'Подключение услуги corp-ats',
     // tariffs: [{ name: tariffFrontName, }],
   };
 
@@ -104,15 +106,15 @@ function submitCustomFormRequest() {
       const reqID = requestBody.requestId;
       const dataSuccess = {
         eventAction: 'send',
-        eventLabel: 'checkout_sms-target-form_server_response',
+        eventLabel: 'checkout_corp-ats-form_server_response',
         requestId: reqID,
         eventCategory: 'Conversions',
-        eventContent: `sms-target_${Date.now()}${generateId(12)}`,
+        eventContent: `corp-ats_${Date.now()}${generateId(12)}`,
         eventContext: 'successful',
         transactionPaymentType: null,
         transactionShippingMethod: null,
       };
-      gaPush(dataSuccess); // console.log(dataSuccess);
+      GTM.gaPush(dataSuccess); // console.log(dataSuccess);
       closeModal('#req-modal-box');
       openModal('#succ-modal-box');
     })
@@ -123,15 +125,15 @@ function submitCustomFormRequest() {
       const reqID = requestBody.requestId;
       const dataSuccess = {
         eventAction: 'send',
-        eventLabel: 'checkout_sms-target-form_server_response',
+        eventLabel: 'checkout_corp-ats-form_server_response',
         requestId: reqID,
         eventCategory: 'Conversions',
-        eventContent: `shop_sms-target_${Date.now()}${generateId(12)}`,
+        eventContent: `shop_corp-ats_${Date.now()}${generateId(12)}`,
         eventContext: 'unsuccessful',
         transactionPaymentType: null,
         transactionShippingMethod: null,
       };
-      gaPush(dataSuccess);
+      GTM.gaPush(dataSuccess);
     })
     .finally(() => toggleLoader());
 }
