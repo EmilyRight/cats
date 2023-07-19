@@ -2,30 +2,26 @@
 import { UAParser } from 'ua-parser-js';
 
 const getMobileOs = () => {
-  const userAgent = navigator.platform || navigator.vendor || window.opera;
+  const { userAgent } = navigator;
   const parser = new UAParser();
-  // console.log(parser.getDevice().type);
-  // console.warn(`${navigator.vendor}|| ${navigator.vendorSub}`);
+  let platform = 'unknown';
 
   if (parser.getDevice().vendor === 'Huawei') {
-    return 'huawei';
+    platform = 'huawei';
   }
   if (/android/i.test(userAgent)) {
-    return 'android';
+    platform = 'android';
   }
   if (parser.getDevice().vendor === 'Apple') {
-    return 'ios';
+    platform = 'ios';
   }
-
-  return 'unknown';
+  return platform;
 };
-
-// detect iOS
-// const isIOS = () => getMobileOs() === 'ios';
 
 function detectDevice() {
   const deviceOs = getMobileOs();
   document.body.classList.add(`platform_${deviceOs}`);
+  setLinkHref();
 }
 
 function setLinkHref() {

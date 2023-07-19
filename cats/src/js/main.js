@@ -1,22 +1,22 @@
 import $ from 'jquery';
 import { WOW } from './vendor/wow.min';
-// import { gaPush, gtmSet } from './components/gtm-events';
-
 import detectDevice from './components/detectDevice';
-// import {videoTeaser} from './components/videoTeaser';
+
 import { closeModal, openModal } from './components/modal';
 import {
   fieldListener, validateFields, keyField, prepField,
 } from './components/inputs';
+import generateId from './components/utils';
 import GTMEvents from './components/gtmEvents';
+
+const GTM = new GTMEvents();
 
 window.jQuery = window.$ = $;
 /// /////// DocReady //////////
-const GTM = new GTMEvents();
-$(() => {
+window.addEventListener('load', () => {
   detectDevice(); // videoTeaser();
   new WOW().init();
-  // gtmSet();
+
   GTM.addEventListeners();
 
   const $body = document.querySelector('body');
@@ -56,7 +56,11 @@ $(() => {
     document.querySelector('.selectorinn').style.display = 'none';
     const _erCount = document.querySelectorAll('.text-error').length;
     const frmReady = (_erCount === 0);
-    if (frmReady) { submitCustomFormRequest(); } else { console.warn('UNREADY SUBMIT'); }
+    if (frmReady) {
+      submitCustomFormRequest();
+    } else {
+      console.warn('UNREADY SUBMIT');
+    }
   }
 
   /*  let $fish = document.querySelectorAll('.fish');
@@ -95,7 +99,7 @@ function submitCustomFormRequest() {
     AdditionalInformation: 'Подключение услуги corp-ats',
     // tariffs: [{ name: tariffFrontName, }],
   };
-
+  console.log(requestBody);
   toggleLoader();
   fetch(url, {
     method: 'POST',
@@ -136,31 +140,4 @@ function submitCustomFormRequest() {
       GTM.gaPush(dataSuccess);
     })
     .finally(() => toggleLoader());
-}
-
-// Scroll To
-function goTo(el) {
-  const offs = 0;
-  const y = el.getBoundingClientRect().top + window.pageYOffset + offs;
-  window.scrollTo({ top: y, behavior: 'smooth' }); // element.scrollIntoView();
-}
-
-// ONCE
-function once(fn, context) {
-  let result;
-  return function () {
-    if (fn) { result = fn.apply(context || this, arguments); fn = null; }
-    return result;
-  };
-}
-
-/// Unique ID
-function dec2hex(dec) {
-  return (`0${dec.toString(16)}`).substr(-2);
-}
-
-function generateId(len) {
-  const arr = new Uint8Array((len || 40) / 2);
-  window.crypto.getRandomValues(arr);
-  return Array.from(arr, dec2hex).join('');
 }

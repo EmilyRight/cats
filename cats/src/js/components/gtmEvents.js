@@ -1,6 +1,8 @@
 /* eslint-disable no-use-before-define */
 // GTM EVENTS
 
+import generateId from './utils';
+
 class GTMEvents {
   constructor() {
     this.scrollHeight = Math.max(
@@ -68,28 +70,13 @@ class GTMEvents {
     this.gaPush(scrollEventData); // console.log(scrollEventData)
   }
 
-  /// Unique ID
-  generateId(len) {
-    const arr = new Uint8Array((len || 40) / 2);
-    window.crypto.getRandomValues(arr);
-    return Array.from(arr, this.dec2hex).join('');
-  }
-
-  /**
-   * @param {number} dec
-   * @return {string}
-   */
-  dec2hex(dec) {
-    return (`0${dec.toString(16)}`).substring(-2);
-  }
-
   gaPush(eventData) {
     this.fullEventData = {
       eventLabel: eventData.eventLabel,
       eventLocation: eventData.eventLocation || null, // data-section
       eventContext: eventData.eventContext || null,
       hitsTime: Date.now(),
-      requestId: this.generateId(7),
+      requestId: generateId(7),
       firingOptions: 'onesPerEvent',
       event: 'event',
       eventStream: 'flight',

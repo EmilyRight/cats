@@ -65,44 +65,18 @@
       h4 {
         font-family: $font2b;
       }
-    }
-    &__close-icon {
-      position: absolute;
-      width: 3rem;
-      height: 3rem;
-      display: flex;
-      align-items: center;
-      right: 1.8rem;
-      top: 1.8rem;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      transition: 0.3s;
-
-      &:active {
-        transform: scale(0.9);
-      }
-    }
-    &__close {
-      position: relative;
-      height: 1px;
-      width: 100%;
-      &::after {
-        content: "";
+      .close {
+        font-size: 3rem;
         position: absolute;
-        height: 1px;
-        background-color: $color-dark;
-        width: 100%;
-        top: 0rem;
-        transform: rotate(-45deg);
-      }
-      &::before {
-        content: "";
-        position: absolute;
-        height: 1px;
-        background-color: $color-dark;
-        width: 100%;
-        top: 0rem;
-        transform: rotate(45deg);
+        right: 1.8rem;
+        top: 1.8rem;
+        width: 1em;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: 0.3s;
+        &:active {
+          transform: scale(0.9);
+        }
       }
     }
     &__body {

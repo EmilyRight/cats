@@ -1,7 +1,7 @@
 const hidden = 'popup-modal-hidden';
 const active = 'modal-box-active';
 const noscroll = 'modal-box-viewed';
-const closeIconClassName = 'modal-box__close-icon';
+const closeIconClassName = 'close';
 const { body } = document;
 
 export function openModal(modalBoxId) {
