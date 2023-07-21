@@ -18,7 +18,7 @@ window.addEventListener('load', () => {
   new WOW().init();
 
   GTM.addEventListeners();
-
+  goNextSection();
   const $body = document.querySelector('body');
 
   // открыть модалку
@@ -140,4 +140,28 @@ function submitCustomFormRequest() {
       GTM.gaPush(dataSuccess);
     })
     .finally(() => toggleLoader());
+}
+
+function goNextSection() {
+  const goNextBtns = document.querySelectorAll('.js-go-next');
+  const sectionsList = document.querySelectorAll('section');
+
+  goNextBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const btnParentNode = btn.closest('section');
+      let sectionToScrollTo;
+      sectionsList.forEach((el, index) => {
+        if (el === btnParentNode) {
+          sectionToScrollTo = sectionsList[index + 1];
+          scrollToElement(sectionToScrollTo);
+        }
+      });
+    });
+  });
+}
+
+function scrollToElement(el) {
+  const offs = 0;
+  const y = el.getBoundingClientRect().top + window.scrollY + offs;
+  window.scrollTo({ top: y, behavior: 'smooth' }); // element.scrollIntoView();
 }

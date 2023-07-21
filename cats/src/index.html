@@ -140,7 +140,7 @@
             fill-rule="evenodd"
           />
         </g>
-        <g fill="#000" fill-rule="nonzero" id="arrow">
+        <g fill="#fff" fill-rule="nonzero" id="arrow">
           <path
             d="M15.662 14.177L1.96.339C1.51-.114.784-.113.336.342c-.448.454-.447 1.19.002 1.644L13.225 15 .337 28.014c-.449.453-.45 1.19-.002 1.644.225.228.52.342.814.342.293 0 .586-.113.81-.34l13.703-13.837c.217-.218.338-.514.338-.823 0-.309-.122-.605-.338-.823z"
             transform="translate(-1161 -5520) translate(162 5056) translate(953 464) translate(46.857)"
@@ -181,28 +181,31 @@
             </picture>
           </div>
           <div
-            class="pic-layer pic-layer--gear wow fadeInLeft"
+            class="pic-layer pic-layer--phone wow fadeInLeft"
             data-wow-delay=".8s"
           >
             <picture>
               <source
                 media="(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-resolution: 2dppx) and (max-width: 600px)"
-                srcset="./img/page/gear@2x.png"
+                srcset="./img/page/phone@2x.png"
               />
-              <source media="(max-width: 600px)" srcset="./img/page/gear.png" />
+              <source
+                media="(max-width: 600px)"
+                srcset="./img/page/phone.png"
+              />
               <img
                 alt=""
                 loading="lazy"
-                src="./img/page/gear.png"
+                src="./img/page/phone.png"
                 width="100%"
               />
             </picture>
           </div>
           <div
-            class="pic-layer pic-layer--toggl wow fadeInLeft"
+            class="pic-layer pic-layer--percent wow fadeInLeft"
             data-wow-delay=".5s"
           >
-            <img alt="" src="./img/page/toggle.png" />
+            <img alt="" src="./img/page/percent.png" />
           </div>
         </div>
         <div class="teaser-heading">
@@ -229,16 +232,23 @@
                 Умная телефония без лишних затрат от&nbsp;700&nbsp;₽
                 в&nbsp;месяц
               </p>
-              <button
-                class="btn btn--main js-tryit js-gtm-event wow fadeIn"
-                data-wow-delay=".8s"
-                data-event="conv_try-tizer"
-                data-section="formLocation_tizer"
-              >
-                <span class="teaser-more__txt"
-                  >Получить 7&nbsp;дней бесплатно</span
+              <div class="teaser-body__buttons">
+                <button
+                  class="btn btn--main js-tryit js-gtm-event wow fadeIn"
+                  data-wow-delay=".8s"
+                  data-event="conv_try-tizer"
+                  data-section="formLocation_tizer"
                 >
-              </button>
+                  <span class="teaser-more__txt"
+                    >Получить 7&nbsp;дней бесплатно</span
+                  >
+                </button>
+                <span class="teaser-more__icon more teaser-more js-go-next js-gtm-event" data-event="button_more" data-section="teaser">
+                  <svg viewBox="0 0 20 30" width="100%">
+                    <use xlink:href="#arrow"></use>
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
         </div>

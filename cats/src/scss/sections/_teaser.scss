@@ -31,60 +31,79 @@
     .pic-layer--laptop {
       width: 57rem;
       max-width: 50%;
-      top: 24%;
-      right: 0;
+      top: 20%;
+      right: -2%;
     }
-    .pic-layer--toggl {
+    .pic-layer--percent {
       width: 13.8rem;
-      left: 44%;
-      top: 40%;
+      right: -2%;
+      top: 15%;
     }
-    .pic-layer--gear {
-      width: 20.4rem;
-      max-width: 100%;
-      left: 48%;
-      top: 38%;
+    .pic-layer--phone {
+      // width: 30%;
+      width: 20rem;
+      max-width: 13.5vw;
+      right: 37%;
+      top: 25%;
       &:before {
         @extend %ab;
-        width: 20rem;
-        height: 20rem;
+        width: 30rem;
+        height: 30rem;
         border-radius: 50%;
+        left: -5rem;
+        top: -1rem;
         background: #00b3ee;
         position: absolute;
         z-index: 0;
-        filter: blur(8rem);
+        filter: blur(15rem);
         opacity: 0.8;
       }
       img {
-        animation: gear 40s ease-in-out alternate-reverse infinite;
+        animation: gear 2s ease-in-out normal infinite;
       }
     }
     @keyframes gear {
       0% {
-        transform: rotate(0deg);
+        transform: translateY(0rem);
+      }
+      20% {
+        transform: translateY(-1rem);
+      }
+      40% {
+        transform: translateY(0rem);
+      }
+      60% {
+        transform: translateY(-1rem);
+      }
+      80% {
+        transform: translateY(0rem);
       }
       100% {
-        transform: rotate(-360deg);
+        transform: translateY(0rem);
       }
     }
 
+
+
     @media (max-width: 600px) {
       min-height: 38rem;
-      .pic-layer--toggl {
-        width: 9.8rem;
-        left: 5%;
+      .pic-layer--percent{
+        width: 6.8rem;
+        right: -3%;
       }
-      .pic-layer--gear {
-        width: 13.5rem;
-        left: 23%;
+      .pic-layer--phone {
+        width: 9.5rem;
+        max-width: 100%;
+        left: 5%;
+        top: 28%;
         &:before {
           display: none;
         }
       }
       .pic-layer--laptop {
-        width: 34rem;
+        width: 33rem;
         max-width: 100%;
-        right: -16%;
+        right: -5%;
         top: 20%;
       }
     }
@@ -174,11 +193,12 @@
         text-transform: uppercase;
         //color:#fff;text-shadow: 0 0 .8em rgba(0,0,0,.3);
         &__icon {
-          display: inline-block;
+          display: none;
           vertical-align: middle;
           margin-left: 0.5rem;
           width: 1rem;
-          transform: rotate(90deg);
+          // transform: rotate(90deg);
+          cursor: pointer;
         }
       }
     }
@@ -218,7 +238,7 @@
 
   @media (max-width: 600px) {
     overflow: visible !important;
-    margin-bottom: 40%;
+    margin-bottom: 0;
 
     //&:before,&:after{display:none}
     .video-layer {
@@ -227,41 +247,59 @@
         min-height: 32rem;
       } //37.5rem default
     }
+    .teaser-layer {
+      min-height: 58rem;
+    }
+    .teaser-heading {
+      padding-top: 1.7rem;
+      .logo {
+        margin: 0 auto;
+      }
+    }
     .teaser-body {
-      bottom: auto; //position: relative;
+      bottom: 0; //position: relative;
       .container {
         padding: 0;
+
       }
 
       &__text {
         padding: 1.8rem;
-        margin: -5.4rem auto 2.7rem;
+
+        // margin: -6.4rem auto 2.7rem;
         background: #000;
         box-shadow: none;
         position: relative;
         color: #fff;
+
         .bigtext {
-          font-size: 4rem;
-          line-height: 1;
+          font-size: 3.4rem;
+          line-height: 40.46px;
+          margin-top: 0;
           margin-bottom: 0;
         }
         p {
           margin: 1.8rem 0 0;
           font-size: 1.6rem;
+          max-width: 80%;
         }
         .btn {
           background: #fff;
           color: #000;
           margin-top: 1.8rem;
+          margin-bottom: 0;
         }
         .teaser-more {
           //position: absolute;right: 0;top:0;width: 100%;height:100%;
           -webkit-tap-highlight-color: transparent;
           //&__txt{display: none;}
           &__icon {
+            display: block;
             transform: rotate(0);
             position: absolute;
             right: 1.8rem;
+            top: 50%;
+            transform: translate(-50%, 0);
           }
         }
       }
