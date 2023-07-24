@@ -56,6 +56,7 @@
         position: absolute;
         z-index: 0;
         filter: blur(15rem);
+        transform: translate3d(0, 0, 0);
         opacity: 0.8;
       }
       img {
@@ -89,23 +90,31 @@
     @media (max-width: 600px) {
       min-height: 38rem;
       .pic-layer--percent{
-        width: 6.8rem;
-        right: -3%;
+        // width: 6.8rem;
+        // right: -3%;
+        display: none;
       }
       .pic-layer--phone {
         width: 9.5rem;
         max-width: 100%;
-        left: 5%;
-        top: 28%;
+        left: 17%;
+        top: 20%;
+
         &:before {
-          display: none;
+          width: 10rem;
+          height: 15rem;
+          left: 0rem;
+          top: 0rem;
+          filter: blur(5rem);
+          transform: translate3d(0, 0, 0);
         }
+
       }
       .pic-layer--laptop {
-        width: 33rem;
+        width: 35rem;
         max-width: 100%;
-        right: -5%;
-        top: 20%;
+        right: -20%;
+        top: 15%;
       }
     }
   }
@@ -161,7 +170,7 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 12%;
+    top: 15%;
     z-index: 2;
     margin-bottom: -1px; //fix adjusted size display
     &__text {
@@ -258,6 +267,7 @@
       }
     }
     .teaser-body {
+      top: auto;
       bottom: 0; //position: relative;
       .container {
         padding: 0;

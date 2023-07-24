@@ -53,10 +53,14 @@
         justify-content: center;
         align-items: center;
         .pic-layer {
-          width: 28.7rem;
+          width: 30.7rem;
+          height: 100%;
+          position: relative;
           img {
             width: 100%;
             display: block;
+            position: absolute;
+            top: -12%;
           }
         }
       }
@@ -88,7 +92,11 @@
       padding-right: 1.8rem;
       &__pic {
         .pic-layer {
-          width: 21.8rem;
+          width: 25.8rem;
+          min-height: 20rem;
+          img {
+            top: -19%;
+          }
         }
       }
       &__buttons {

@@ -99,7 +99,7 @@ function submitCustomFormRequest() {
     AdditionalInformation: 'Подключение услуги corp-ats',
     // tariffs: [{ name: tariffFrontName, }],
   };
-  console.log(requestBody);
+
   toggleLoader();
   fetch(url, {
     method: 'POST',

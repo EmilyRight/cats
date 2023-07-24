@@ -1,72 +1,106 @@
-export function fieldListener(el, events, _h) { events.forEach((ev) => el.addEventListener(ev, _h)); }
+import Inputmask from 'inputmask';
 
-export function prepField(ee) {
-  const _tf = 'text-field';
-  const _hldr = '.text-field-holder';
-  const $fld = (ee.target.classList.contains(_tf)) ? ee.target : ee.target.closest(`.${_tf}`);
-  if ($fld) {
-    const $holder = $fld.closest(_hldr); const
-      _val = $fld.value;
-    (_val.length > 0) ? checkVal(_val, $holder) : $holder.classList.remove('text-active');
-  }
+const inputClassName = 'text-field';
+const fieldClassName = '.text-field-holder';
+const errorText = 'text-error';
+const phoneRegionCodeError = 'Проверьте код оператора или региона - он может начинаться на 3, 4, 5, 6, 8 или 9';
+const phoneError = 'Заполните все цифры номера';
+
+function fieldListener(element, eventsArray, callback) {
+  eventsArray.forEach((event) => element.addEventListener(event, callback));
 }
-export function keyField(ee) {
-  const _tf = 'text-field';
-  const _hldr = '.text-field-holder';
-  const $fld = (ee.target.classList.contains(_tf)) ? ee.target : ee.target.closest(`.${_tf}`);
-  if ($fld) {
-    const $holder = $fld.closest(_hldr);
-    $holder.classList.add('text-active');
-    const _fc = $fld.classList;
 
-    if (_fc.contains('js-name')) { $fld.value = $fld.value.replace(/[^а-яёА-ЯЁ ]/g, ''); }
-    if (_fc.contains('js-tel')) { validatePhone(ee); }
-    if (_fc.contains('js-inn')) { $fld.value = $fld.value.replace(/\D/g, ''); }
+function defineInput(event) {
+  return event.target.classList.contains(inputClassName) ? event.target : event.target.closest(`.${inputClassName}`);
+}
 
-    if (ee.type === 'beforeinput') { $holder.classList.remove('text-error'); }
-    if (ee.type === 'paste') { console.log('paste'); }
-    if (ee.type === 'click') {}
-    if (ee.type === 'keydown') {
-      const _k = ee.key; const
-        _kc = ee.code; // console.log(_k);
-      if (ee.key === 'Backspace') {}
+function setPhonemask() {
+  const phoneInput = document.querySelector('.js-tel');
+  const im = new Inputmask('+7(999) 999-99-99');
+  im.mask(phoneInput);
+}
+
+function validatePhone() {
+  const phoneInput = document.querySelector('.js-tel');
+  const correctPhoneNumber = phoneInput.value.match(/^((8|\+7)[\- ]?)?(\(?[3,4,5,6,8,9]\d{2}\)?[\- ]?)[\d\- ]{7,10}$/);
+  const incorrectRegion = phoneInput.value.match(/\([1,2,7,0]/);
+
+  return {
+    correctPhoneNumber, incorrectRegion,
+  };
+}
+
+function showErrors(textHolder) {
+  const inputField = textHolder.querySelector('input.text-field');
+  const inputValue = inputField.value;
+  const errorBlock = textHolder.querySelector('.error-text');
+  if (inputField.classList.contains('js-name')) {
+    if (inputValue.length < 2) {
+      textHolder.classList.add(errorText);
+    } else {
+      textHolder.classList.remove(errorText);
+    }
+  } else if (inputField.classList.contains('js-tel')) {
+    const validatedPhone = validatePhone();
+
+    if (validatedPhone.correctPhoneNumber === null) {
+      textHolder.classList.add(errorText);
+    } else {
+      textHolder.classList.remove(errorText);
+    }
+
+    if (validatedPhone.incorrectRegion !== null) {
+      errorBlock.innerText = phoneRegionCodeError;
+    } else {
+      errorBlock.innerText = phoneError;
     }
   }
 }
 
-export function validateFields() {
-  const $_holders = document.querySelectorAll('.text-field-holder');
-  const _er = 'text-error';
+function validateFields() {
+  const textHoldersArray = document.querySelectorAll('.text-field-holder');
 
-  [...$_holders].forEach((h) => { showErrors(h); });
-  function showErrors(_h) {
-    const _fld = _h.querySelector('input.text-field');
-    const _fClass = _fld.classList; const
-      _fVal = _fld.value;
-    if (_fClass.contains('js-name')) {
-      (_fVal.length < 2) ? _h.classList.add(_er) : _h.classList.remove(_er);
-    }
-    if (_fClass.contains('js-tel')) {
-      (_fVal.length < 17) ? _h.classList.add(_er) : _h.classList.remove(_er);
+  textHoldersArray.forEach((textHolder) => {
+    showErrors(textHolder);
+  });
+}
+
+function prepField(event) {
+  const textInput = defineInput(event);
+  if (textInput) {
+    const textHolder = textInput.closest(fieldClassName);
+    const inputValue = textInput.value;
+    if (inputValue.length === 0) {
+      textHolder.classList.remove('text-active');
     }
   }
 }
 
-function validatePhone(e) {
-  const el = e.target;
-  const clearVal = el.dataset.phoneClear;
-  const pattern = el.dataset.phonePattern;
-  const matrix_def = '+7(9__) ___-__-__';
-  const matrix = pattern || matrix_def;
-  let i = 0; const def = matrix.replace(/\D/g, '');
-  let val = e.target.value.replace(/\D/g, '');
-  if (clearVal !== 'false' && e.type === 'blur') {
-    if (val.length < matrix.match(/([\_\d])/g).length) {
-      e.target.value = '';
-      return;
+function keyField(event) {
+  const textInput = defineInput(event);
+
+  if (textInput) {
+    const textHolder = textInput.closest(fieldClassName);
+    textHolder.classList.add('text-active');
+
+    if (textInput.classList.contains('js-name')) {
+      textInput.value = textInput.value.replace(/[^а-яёА-ЯЁ ]/g, '');
+      showErrors(textHolder);
+    }
+    if (textInput.classList.contains('js-tel')) {
+      setPhonemask();
+      showErrors(textHolder);
+    }
+    if (textInput.classList.contains('js-inn')) {
+      textInput.value = textInput.value.replace(/\D/g, '');
+    }
+
+    if (event.type === 'beforeinput' || event.key === 'Backspace') {
+      showErrors(textHolder);
     }
   }
-  if (def.length >= val.length) val = def;
-  e.target.value = matrix.replace(/./g, (a) => (/[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? '' : a));
 }
-function checkVal(v, _hldr) {}
+
+export {
+  fieldListener, prepField, keyField, validateFields,
+};

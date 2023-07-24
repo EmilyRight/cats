@@ -58,19 +58,21 @@
     .card {
       flex: 100% 0 0;
       margin-bottom: 0;
+      padding: 1.8rem;
       //display: flex;flex-wrap: wrap;
       //flex-direction: row;
       &__pic {
         flex: 4.4rem 0 0;
+        width: 4.4rem;
         position: absolute;
       }
       &__title {
         flex: 70% 0 0;
-        margin-left: 30%;
+        margin-left: 20%;
       }
       &__text {
         flex: 70% 0 1;
-        margin-left: 30%;
+        margin-left: 20%;
       }
     }
   }
