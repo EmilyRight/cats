@@ -1,0 +1,325 @@
+.teaser {
+  position: relative;
+  z-index: 5; //background-color:$color-dark;
+
+  //&:before{@extend %ab;background: rgba(0,0,0,.15);left:0;right: 0;top:0;bottom:0;z-index:1;content:'';display:block}
+
+  .video-layer {
+    overflow: hidden;
+    video {
+      position: relative;
+      margin: 0;
+      display: block;
+      object-fit: cover;
+      max-height: 90vh;
+      min-height: 54rem;
+      height: 50vw;
+    }
+  }
+  .teaser-layer {
+    position: relative;
+    max-height: 60vh;
+    min-height: 56rem;
+    height: 50vw;
+    .pic-layer {
+      position: absolute;
+      img {
+        display: block;
+        max-width: 100%;
+      }
+    }
+    .pic-layer--laptop {
+      width: 57rem;
+      max-width: 50%;
+      top: 20%;
+      right: -2%;
+    }
+    .pic-layer--percent {
+      width: 13.8rem;
+      right: -2%;
+      top: 15%;
+    }
+    .pic-layer--phone {
+      // width: 30%;
+      width: 20rem;
+      max-width: 13.5vw;
+      right: 37%;
+      top: 25%;
+      &:before {
+        @extend %ab;
+        width: 30rem;
+        height: 30rem;
+        border-radius: 50%;
+        left: -5rem;
+        top: -1rem;
+        background: #00b3ee;
+        position: absolute;
+        z-index: 0;
+        filter: blur(15rem);
+        transform: translate3d(0, 0, 0);
+        opacity: 0.8;
+      }
+      img {
+        animation: gear 2s ease-in-out normal infinite;
+        animation-delay: 3s;
+      }
+    }
+    @keyframes gear {
+      0% {
+        transform: translateY(0rem);
+      }
+      20% {
+        transform: translateY(-0.5rem);
+      }
+      40% {
+        transform: translateY(0rem);
+      }
+      60% {
+        transform: translateY(-0.5rem);
+      }
+      80% {
+        transform: translateY(0rem);
+      }
+      100% {
+        transform: translateY(0rem);
+      }
+    }
+
+
+
+    @media (max-width: 600px) {
+      min-height: 38rem;
+      .pic-layer--percent{
+        // width: 6.8rem;
+        // right: -3%;
+        display: none;
+      }
+      .pic-layer--phone {
+        width: 9.5rem;
+        max-width: 100%;
+        left: 17%;
+        top: 20%;
+
+        &:before {
+          width: 10rem;
+          height: 15rem;
+          left: 0rem;
+          top: 0rem;
+          filter: blur(5rem);
+          transform: translate3d(0, 0, 0);
+        }
+
+      }
+      .pic-layer--laptop {
+        width: 35rem;
+        max-width: 100%;
+        right: -20%;
+        top: 15%;
+      }
+    }
+  }
+
+  //ios saving mode fix
+  .platform_ios & {
+    .video-layer {
+      background: url("../video/fallback-ios@2x.jpg") no-repeat;
+      background-size: cover;
+      background-position: 50% 0;
+      video {
+        opacity: 0;
+        transition: opacity 0.2s linear;
+        &.is_started {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .top-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    width: 8.8rem;
+    display: block;
+    svg,
+    img {
+      max-width: 100%;
+      display: block;
+      width: 100%;
+    }
+    @media (max-width: 1156px) {
+      width: 5.8rem;
+    }
+    @media (max-width: 600px) {
+      width: 6.4rem;
+    }
+  }
+
+  &-heading {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    padding-top: 3.6rem;
+    transform: translateY(0);
+  }
+  &-body {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 15%;
+    z-index: 2;
+    margin-bottom: -1px; //fix adjusted size display
+    &__text {
+      padding-bottom: 6.3rem; //
+      width: 52rem;
+      max-width: 100%;
+      color: #000; //color:#fff;text-shadow: 0 0 .8em rgba(0,0,0,.3);
+      .bigtext {
+        font-family: $fontStencil;
+        font-weight: 400;
+        text-transform: uppercase;
+        width: 59rem;
+        max-width: 100%;
+        line-height: 1.22;
+        font-size: 5.4rem;
+        margin-bottom: 1.8rem;
+      }
+      p {
+        font-size: 2.2rem;
+        display: block;
+        margin: 1.5rem 0 3.6rem;
+      }
+
+      .teaser-more {
+        display: inline-block;
+        background: none;
+        border: none;
+        padding: 0;
+        font: bold 1.6rem $font1;
+        text-transform: uppercase;
+        //color:#fff;text-shadow: 0 0 .8em rgba(0,0,0,.3);
+        &__icon {
+          display: none;
+          vertical-align: middle;
+          margin-left: 0.5rem;
+          width: 1rem;
+          // transform: rotate(90deg);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  //full hd display
+  @media (min-width: 1700px) {
+    .teaser-heading {
+      padding-top: 5.4rem;
+    }
+    .teaser-body {
+      &__text {
+        padding-bottom: 5.4rem;
+        .bigtext {
+          font-size: 6.3rem;
+        }
+      }
+    }
+  }
+  @media (max-width: 1156px) {
+    .teaser-heading {
+      padding-top: 2.7rem;
+    }
+  }
+
+  //big smartphone
+  @media (max-width: 960px) {
+    .teaser-body {
+      &__text {
+        .bigtext {
+          line-height: 1.18;
+          font-size: 4.5rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    overflow: visible !important;
+    margin-bottom: 0;
+
+    //&:before,&:after{display:none}
+    .video-layer {
+      max-width: 100%;
+      video {
+        min-height: 32rem;
+      } //37.5rem default
+    }
+    .teaser-layer {
+      min-height: 58rem;
+    }
+    .teaser-heading {
+      padding-top: 1.7rem;
+      .logo {
+        margin: 0 auto;
+      }
+    }
+    .teaser-body {
+      top: auto;
+      bottom: 0; //position: relative;
+      .container {
+        padding: 0;
+
+      }
+
+      &__text {
+        padding: 1.8rem;
+
+        // margin: -6.4rem auto 2.7rem;
+        background: #000;
+        box-shadow: none;
+        position: relative;
+        color: #fff;
+
+        .bigtext {
+          font-size: 3.4rem;
+          line-height: 40.46px;
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+        p {
+          margin: 1.8rem 0 0;
+          font-size: 1.6rem;
+          max-width: 80%;
+        }
+        .btn {
+          background: #fff;
+          color: #000;
+          margin-top: 1.8rem;
+          margin-bottom: 0;
+        }
+        .teaser-more {
+          //position: absolute;right: 0;top:0;width: 100%;height:100%;
+          -webkit-tap-highlight-color: transparent;
+          //&__txt{display: none;}
+          &__icon {
+            display: block;
+            transform: rotate(0);
+            position: absolute;
+            right: 1.8rem;
+            top: 50%;
+            transform: translate(-50%, 0);
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 330px) {
+    .teaser-body {
+      // &__text{ .bigtext{font-size:3rem}}
+    }
+  }
+}

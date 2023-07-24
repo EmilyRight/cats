@@ -1,0 +1,12 @@
+.icon-spinner{
+  font-size: 2.6rem !important; //Размер иконки
+  $color-gray:#626469; //цвет
+
+  position: relative;display: block;text-decoration: none;
+  width: 1em;height:1em;border: .08em solid $color-gray;border-radius: 50%;
+  &:before,&:after{content:"";position: absolute;display: block;width:.07em;background-color:$color-gray;border-radius: .05em;-webkit-transform-origin: 50% 0;transform-origin: 50% 0;top:50%;left:.4em;}
+  &:before {height: .28em;animation: spin-clock 2s linear infinite;}
+  &:after {height: .35em;animation: spin-clock 1s linear infinite;}
+
+  @keyframes spin-clock{ to {-webkit-transform: rotate(360deg);transform: rotate(360deg)}  }
+}

@@ -1,0 +1,14 @@
+.text-area-holder {@extend .text-field-holder;
+  &.text-active{
+    label{width: 100%;background-color:$color-white;z-index: 2}
+  }
+  &.text-error{label{border-color: $color-red2}}
+  &.text-done {label{border-color:$color-green3}}
+  &:hover     {label{border-color: $color-dark}}
+}
+textarea{
+  &.text-field{
+    overflow: auto;resize:none;height: 130px;padding-top: 30px !important;
+    &.rows-height {height: auto;}
+  }
+}
