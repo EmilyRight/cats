@@ -5,6 +5,7 @@ const fieldClassName = '.text-field-holder';
 const errorText = 'text-error';
 const phoneRegionCodeError = 'Проверьте код оператора или региона - он может начинаться на 3, 4, 5, 6, 8 или 9';
 const phoneError = 'Заполните все цифры номера';
+const im = new Inputmask('+7(999) 999-99-99');
 
 function fieldListener(element, eventsArray, callback) {
   eventsArray.forEach((event) => element.addEventListener(event, callback));
@@ -16,7 +17,7 @@ function defineInput(event) {
 
 function setPhonemask() {
   const phoneInput = document.querySelector('.js-tel');
-  const im = new Inputmask('+7(999) 999-99-99');
+  // im = new Inputmask('+7(999) 999-99-99');
   im.mask(phoneInput);
 }
 
@@ -70,8 +71,13 @@ function prepField(event) {
   if (textInput) {
     const textHolder = textInput.closest(fieldClassName);
     const inputValue = textInput.value;
-    if (inputValue.length === 0) {
+    if (inputValue.length === 0 && !textInput.classList.contains('js-tel')) {
       textHolder.classList.remove('text-active');
+    }
+
+    if (textInput.classList.contains('js-tel')) {
+      im.remove(textInput);
+      textInput.placeholder = '';
     }
   }
 }

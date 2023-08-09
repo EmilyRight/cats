@@ -17,4 +17,15 @@ function generateId(len) {
   return Array.from(arr, dec2hex).join('');
 }
 
-export default generateId;
+function getCookie(name) {
+  const matches = document.cookie.match(new RegExp(
+    `(?:^|; )${name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1')}=([^;]*)`,
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+function setCookie(name, value) {
+  document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`;
+}
+
+export { generateId, getCookie, setCookie };

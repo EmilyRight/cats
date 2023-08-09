@@ -157,6 +157,36 @@
       </svg>
     </div>
     <div class="page">
+      <div class="sticky-bar">
+        <div class="container">
+          <div class="region-selector ask-for-region">
+            <div class="region-selector__text">
+              Ваш регион <span class="js-regionFullName"> </span> ?
+            </div>
+            <div class="region-selector__btns">
+              <button
+                class="btn btn--ok js-region-ok js-gtm-event"
+                data-event="region-selector"
+              >
+                Верно
+              </button>
+              <button class="btn js-show-region-modal">Изменить регион</button>
+            </div>
+          </div>
+          <div class="selected-region">
+            <div class="selected-region__region-name">
+              <img
+                alt=""
+                class="selected-region__icon"
+                src="./img/icons/location.svg"
+              />
+              <span
+                class="js-regionFullName selected-region__name js-show-region-modal"
+              ></span>
+            </div>
+          </div>
+        </div>
+      </div>
       <section class="section teaser">
         <div class="teaser-layer container">
           <div
@@ -243,7 +273,7 @@
                     >Получить 7&nbsp;дней бесплатно</span
                   >
                 </button>
-                <span
+                <!-- <span
                   class="teaser-more__icon more teaser-more js-go-next js-gtm-event"
                   data-event="button_more"
                   data-section="teaser"
@@ -251,7 +281,7 @@
                   <svg viewBox="0 0 20 30" width="100%">
                     <use xlink:href="#arrow"></use>
                   </svg>
-                </span>
+                </span> -->
               </div>
             </div>
           </div>
@@ -571,6 +601,277 @@
               >Закрыть</span
             >
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="popup-modal popup-modal-hidden">
+      <div class="modal-box modal-box--dark" id="region-modal-box">
+        <div class="modal-box__header">
+          <h3>
+            Ваш регион:
+            <!--<span class="js-location-name">Москва и область</span>-->
+          </h3>
+          <div class="close"><i class="ico icon-close"></i></div>
+        </div>
+        <div class="modal-box__body">
+          <div class="items-content region-list__popular"></div>
+          <div class="items-content region-list__all">
+            <ul class="region-list__group">
+              <li class="js-set-city" data-area="siteIRKUTSK">
+                Иркутская область
+              </li>
+              <li class="js-set-city" data-area="siteMSK">Москва и область</li>
+              <li class="js-set-city" data-area="siteNNOV">
+                Нижегородская область
+              </li>
+              <li class="js-set-city" data-area="siteROSTOV">
+                Ростовская область
+              </li>
+              <li class="js-set-city" data-area="siteSPB">
+                Санкт-Петербург и Ленинградская область
+              </li>
+              <li class="js-set-city" data-area="siteEKT">
+                Свердловская область
+              </li>
+              <li class="js-set-city" data-area="siteCHELYABINSK">
+                Челябинская область
+              </li>
+            </ul>
+            <ul class="region-list__group">
+              <span class="region-list__letter">А</span>
+              <li class="js-set-city" data-area="siteBARNAUL">
+                Алтайский край
+              </li>
+              <li class="js-set-city" data-area="siteARH">
+                Архангельская область
+              </li>
+            </ul>
+            <ul class="region-list__group">
+              <span class="region-list__letter">Б</span>
+              <li class="js-set-city" data-area="siteBELGOROD">
+                Белгородская область
+              </li>
+              <li class="js-set-city" data-area="siteBRYANSK">
+                Брянская область
+              </li>
+            </ul>
+            <ul class="region-list__group">
+              <span class="region-list__letter">В</span>
+              <li class="js-set-city" data-area="siteVLADIMIR">
+                Владимирская область
+              </li>
+              <li class="js-set-city" data-area="siteVOLGOGRAD">
+                Волгоградская область
+              </li>
+              <li class="js-set-city" data-area="siteVOLOGDA">
+                Вологодская область
+              </li>
+              <li class="js-set-city" data-area="siteVORONEZH">
+                Воронежская область
+              </li>
+            </ul>
+            <ul class="region-list__group">
+              <span class="region-list__letter">Е</span>
+              <li class="js-set-city" data-area="siteEAO">Еврейская АО</li>
+            </ul>
+            <ul class="region-list__group">
+              <span class="region-list__letter">И</span>
+              <li class="js-set-city" data-area="siteIVANOVO">
+                Ивановская область
+              </li>
+              <li class="js-set-city" data-area="siteIRKUTSK">
+                Иркутская область
+              </li>
+            </ul>
+            <ul class="region-list__group">
+              <span class="region-list__letter">К</span>
+              <li class="js-set-city" data-area="siteKALININGRAD">
+                Калининградская область
+              </li>
+              <li class="js-set-city" data-area="siteKALUGA">
+                Калужская область
+              </li>
+              <li class="js-set-city" data-area="siteKAMCHATKA">
+                Камчатский край
+              </li>
+              <li class="js-set-city" data-area="siteKUZBASS">
+                Кемеровская область
+              </li>
+              <li class="js-set-city" data-area="siteKIROV">
+                Кировская область
+              </li>
+              <li class="js-set-city" data-area="siteKOSTROMA">
+                Костромская область
+              </li>
+              <li class="js-set-city" data-area="siteKRASNODAR">
+                Краснодарский край и Республика Адыгея
+              </li>
+              <li class="js-set-city" data-area="siteKRASNOYARSK">
+                Красноярский край (кроме Норильска)
+              </li>
+              <li class="js-set-city" data-area="siteNORILSK">
+                Красноярский край (Норильск)
+              </li>
+              <li class="js-set-city" data-area="siteKURGAN">
+                Курганская область
+              </li>
+              <li class="js-set-city" data-area="siteKURSK">Курская область</li>
+            </ul>
+            <ul class="region-list__group">
+              <span class="region-list__letter">Л</span>
+              <li class="js-set-city" data-area="siteLIPETSK">
+                Липецкая область
+              </li>
+            </ul>
+            <ul class="region-list__group">
+              <span class="region-list__letter">М</span>
+              <li class="js-set-city" data-area="siteMAGADAN">
+                Магаданская область
+              </li>
+              <li class="js-set-city" data-area="siteMSK">Москва и область</li>
+              <li class="js-set-city" data-area="siteMURMANSK">
+                Мурманская область
+              </li>
+            </ul>
+            <ul class="region-list__group">
+              <span class="region-list__letter">Н</span>
+              <li class="js-set-city" data-area="siteNNOV">
+                Нижегородская область
+              </li>
+              <li class="js-set-city" data-area="siteNOVGOROD">
+                Новгородская область
+              </li>
+              <li class="js-set-city" data-area="siteNOVOSIBIRSK">
+                Новосибирская область
+              </li>
+            </ul>
+            <ul class="region-list__group">
+              <span class="region-list__letter">О</span>
+              <li class="js-set-city" data-area="siteOMSK">Омская область</li>
+              <li class="js-set-city" data-area="siteORENBURG">
+                Оренбургская область
+              </li>
+              <li class="js-set-city" data-area="siteOREL">
+                Орловская область
+              </li>
+            </ul>
+            <ul class="region-list__group">
+              <span class="region-list__letter">П</span>
+              <li class="js-set-city" data-area="sitePENZA">
+                Пензенская область
+              </li>
+              <li class="js-set-city" data-area="sitePERM">Пермский край</li>
+              <li class="js-set-city" data-area="siteVLADIVOSTOK">
+                Приморский край
+              </li>
+              <li class="js-set-city" data-area="sitePSKOV">
+                Псковская область
+              </li>
+            </ul>
+            <ul class="region-list__group">
+              <span class="region-list__letter">Р</span>
+              <li class="js-set-city" data-area="SiteALTAI">
+                Республика Алтай
+              </li>
+              <li class="js-set-city" data-area="siteBURYATIA">
+                Республика Бурятия
+              </li>
+              <li class="js-set-city" data-area="siteKARELIA">
+                Республика Карелия
+              </li>
+              <li class="js-set-city" data-area="siteKOMI">Республика Коми</li>
+              <li class="js-set-city" data-area="siteMARIEL">
+                Республика Марий Эл
+              </li>
+              <li class="js-set-city" data-area="siteMORDOVIA">
+                Республика Мордовия
+              </li>
+              <li class="js-set-city" data-area="siteKAZAN">
+                Республика Татарстан
+              </li>
+              <li class="js-set-city" data-area="siteKHAKASIA">
+                Республика Хакасия и Республика Тыва
+              </li>
+              <li class="js-set-city" data-area="siteROSTOV">
+                Ростовская область
+              </li>
+              <li class="js-set-city" data-area="siteRYAZAN">
+                Рязанская область
+              </li>
+            </ul>
+            <ul class="region-list__group">
+              <span class="region-list__letter">С</span>
+              <li class="js-set-city" data-area="siteSAMARA">
+                Самарская область
+              </li>
+              <li class="js-set-city" data-area="siteSPB">
+                Санкт-Петербург и Ленинградская область
+              </li>
+              <li class="js-set-city" data-area="siteSARATOV">
+                Саратовская область
+              </li>
+              <li class="js-set-city" data-area="siteSAKHALIN">
+                Сахалинская область
+              </li>
+              <li class="js-set-city" data-area="siteEKT">
+                Свердловская область
+              </li>
+              <li class="js-set-city" data-area="siteSMOLENSK">
+                Смоленская область
+              </li>
+            </ul>
+            <ul class="region-list__group">
+              <span class="region-list__letter">Т</span>
+              <li class="js-set-city" data-area="siteTAMBOV">
+                Тамбовская область
+              </li>
+              <li class="js-set-city" data-area="siteTVER">Тверская область</li>
+              <li class="js-set-city" data-area="siteTOMSK">Томская область</li>
+              <li class="js-set-city" data-area="siteTULA">Тульская область</li>
+              <li class="js-set-city" data-area="siteTYUMEN">
+                Тюменская область
+              </li>
+            </ul>
+            <ul class="region-list__group">
+              <span class="region-list__letter">У</span>
+              <li class="js-set-city" data-area="siteIZHEVSK">
+                Удмуртская Республика
+              </li>
+              <li class="js-set-city" data-area="siteULN">
+                Ульяновская область
+              </li>
+            </ul>
+            <ul class="region-list__group">
+              <span class="region-list__letter">Х</span>
+              <li class="js-set-city" data-area="siteKHABAROVSK">
+                Хабаровский край
+              </li>
+              <li class="js-set-city" data-area="siteHMAO">
+                Ханты-Мансийский АО—Югра
+              </li>
+            </ul>
+            <ul class="region-list__group">
+              <span class="region-list__letter">Ч</span>
+              <li class="js-set-city" data-area="siteCHELYABINSK">
+                Челябинская область
+              </li>
+              <li class="js-set-city" data-area="siteCHUVASHIA">
+                Чувашская Республика
+              </li>
+            </ul>
+            <ul class="region-list__group">
+              <span class="region-list__letter">Я</span>
+              <li class="js-set-city" data-area="siteYANAO">
+                Ямало-Ненецкий АО
+              </li>
+              <li class="js-set-city" data-area="siteYAR">
+                Ярославская область
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="modal-box__actions">
+          <div><span class="btn close">Закрыть</span></div>
         </div>
       </div>
     </div>

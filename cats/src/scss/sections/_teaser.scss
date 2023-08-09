@@ -85,30 +85,24 @@
       }
     }
 
-
-
     @media (max-width: 600px) {
       min-height: 38rem;
-      .pic-layer--percent{
+      .pic-layer--percent {
         // width: 6.8rem;
         // right: -3%;
         display: none;
       }
       .pic-layer--phone {
-        width: 9.5rem;
+        width: 12.5rem;
         max-width: 100%;
         left: 17%;
-        top: 20%;
+        top: 15%;
 
         &:before {
-          width: 10rem;
-          height: 15rem;
-          left: 0rem;
-          top: 0rem;
-          filter: blur(5rem);
-          transform: translate3d(0, 0, 0);
+          display: none;
+          // filter: blur(5rem);
+          // transform: translate3d(0, 0, 0);
         }
-
       }
       .pic-layer--laptop {
         width: 35rem;
@@ -258,7 +252,7 @@
       } //37.5rem default
     }
     .teaser-layer {
-      min-height: 58rem;
+      min-height: 55rem;
     }
     .teaser-heading {
       padding-top: 1.7rem;
@@ -271,7 +265,6 @@
       bottom: 0; //position: relative;
       .container {
         padding: 0;
-
       }
 
       &__text {

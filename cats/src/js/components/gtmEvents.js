@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 // GTM EVENTS
 
-import generateId from './utils';
+import { generateId } from './utils';
 
 class GTMEvents {
   constructor() {

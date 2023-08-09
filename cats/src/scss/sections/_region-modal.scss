@@ -1,0 +1,158 @@
+.sticky-bar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: $color-dark;
+  padding: 0.8rem 0;
+  .region-selector {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 0.8rem;
+    &__text {
+      color: #fff;
+    }
+    &__btns {
+      display: flex;
+    }
+    .btn {
+      padding: 0.5rem 2.4rem;
+      min-width: 10.4rem;
+      display: inline-block;
+      margin-left: 0.8rem;
+      margin-bottom: 0;
+      background: #626469;
+      color: #fff;
+      border-radius: 0;
+      font-weight: normal;
+      &--ok {
+        background: #fff;
+        color: #000;
+      }
+    }
+  }
+  .selected-region {
+    &__region-name {
+      margin-right: 0.3rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    &__icon {
+      max-width: 1.5rem;
+    }
+
+    &__name {
+      color: #7a7a7a;
+      transition: 0.4s;
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .region-selector {
+      flex-direction: column;
+      &__text {
+        font-size: 1.6rem;
+        margin-bottom: 1.2rem;
+      }
+    }
+    .selected-region {
+      &__region-name {
+        margin-right: 0rem;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+#region-modal-box {
+  width: 100%;
+  height: 100%;
+  background: rgba(31, 34, 41, 0.98);
+
+  .modal-box__actions {
+    text-align: left;
+    padding-bottom: 0;
+    .btn {
+      width: auto;
+      min-width: 152px;
+      margin-bottom: 0;
+    }
+  }
+
+  .items-content {
+    margin-bottom: 2.7rem;
+    ul {
+      margin: 0 0 26px;
+    }
+    li {
+      display: block;
+      margin: 0 5px 0 0;
+      padding: 8px 17px 6px 0;
+      font-size: 14px;
+      line-height: 18px;
+      color: white;
+      transition: 0.2s;
+      cursor: pointer;
+      &:hover,
+      &:active {
+        color: #fff;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .region-list {
+    &__all {
+      column-count: 4;
+    }
+
+    &__letter {
+      font-size: 2.2rem;
+      color: #fff;
+      font-family: $font2, sans-serif;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+  }
+  @media (max-width: 600px) {
+    .region-list {
+      padding: 0;
+      margin: 0;
+      &__all {
+        column-count: 3;
+      }
+      &__group {
+        padding: 0;
+        font-size: 1.2rem;
+      }
+      &__letter {
+        font-size: 1.2rem;
+        color: #fff;
+        font-family: $font2, sans-serif;
+        display: block;
+      }
+    }
+    .items-content {
+
+      ul {
+        margin: 0 0 26px;
+      }
+      li {
+        padding: 0;
+        margin-bottom: 1.2rem;
+        font-size: 1.2rem;
+        line-height: 1.8rem;
+      }
+    }
+  }
+}

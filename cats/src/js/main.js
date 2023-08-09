@@ -1,12 +1,13 @@
+/* eslint-disable no-use-before-define */
 import $ from 'jquery';
 import { WOW } from './vendor/wow.min';
 import detectDevice from './components/detectDevice';
-
+import regionsData from './data/regionsData';
 import { closeModal, openModal } from './components/modal';
 import {
   fieldListener, validateFields, keyField, prepField,
 } from './components/inputs';
-import generateId from './components/utils';
+import { generateId } from './components/utils';
 import GTMEvents from './components/gtmEvents';
 
 const GTM = new GTMEvents();
@@ -19,8 +20,11 @@ window.addEventListener('load', () => {
 
   GTM.addEventListeners();
   goNextSection();
+  showRegion();
+  handleRegionModal();
+  chooseRegion();
+  confirmRegion();
   const $body = document.querySelector('body');
-
   // открыть модалку
   $body.addEventListener('click', (e) => {
     const _cl = 'js-tryit';
@@ -96,8 +100,8 @@ function submitCustomFormRequest() {
     requestId: `${Date.now()}_${Math.random().toString().slice(2, 12)}`,
     region: siteId.slice(4).toLowerCase(),
     InnCompany: inn,
-    AdditionalInformation: 'Подключение услуги corp-ats',
-    // tariffs: [{ name: tariffFrontName, }],
+    AdditionalInformation: 'Подключение услуги Корпоративная АТС',
+    options: [{ name: 'Корпоративная АТС' }],
   };
 
   toggleLoader();
@@ -164,4 +168,76 @@ function scrollToElement(el) {
   const offs = 0;
   const y = el.getBoundingClientRect().top + window.scrollY + offs;
   window.scrollTo({ top: y, behavior: 'smooth' }); // element.scrollIntoView();
+}
+
+// handle region
+
+async function getJSON() {
+  const response = await fetch('http://api.sypexgeo.net/');
+  const data = await response.json();
+  return data.region.name_ru;
+}
+
+function showRegion() {
+  const id = localStorage.getItem('siteId') || 'siteMSK';
+  const regionName = regionsData.find(({ siteId }) => siteId === id)?.name;
+  const regionSpan = document.querySelectorAll('.js-regionFullName');
+  regionSpan.forEach((it) => {
+    it.innerHTML = `${regionName}`;
+  });
+}
+
+function setRegion(cityCode) {
+  const regionName = regionsData.find(({ siteId }) => siteId === cityCode)?.name;
+  const regionSpan = document.querySelector('.selected-region__name');
+  regionSpan.innerHTML = `${regionName}`;
+  localStorage.setItem('siteId', cityCode);
+}
+
+function chooseRegion() {
+  const regionsList = document.querySelectorAll('.js-set-city');
+  regionsList.forEach((region) => {
+    region.addEventListener('click', () => {
+      const cityCode = region.getAttribute('data-area');
+      setRegion(cityCode);
+      showRegion();
+      hideRegionQuestion();
+    });
+  });
+}
+
+function handleRegionModal() {
+  const chooseRegionButton = document.querySelectorAll('.js-show-region-modal');
+  const regionsList = document.querySelectorAll('.js-set-city');
+
+  chooseRegionButton.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      openModal('#region-modal-box');
+    });
+  });
+
+  regionsList.forEach((region) => {
+    region.addEventListener('click', () => {
+      closeModal('#region-modal-box');
+    });
+  });
+}
+
+function hideRegionQuestion() {
+  const id = localStorage.getItem('siteId');
+  const regionModalHeader = document.querySelector('.ask-for-region');
+  const defaultRegion = 'siteMSK';
+  if (id) {
+    regionModalHeader.style.display = 'none';
+  } else {
+    localStorage.setItem('siteId', defaultRegion);
+    regionModalHeader.style.display = 'none';
+  }
+}
+
+function confirmRegion() {
+  const regionConfirmButton = document.querySelector('.js-region-ok');
+  regionConfirmButton.addEventListener('click', () => {
+    hideRegionQuestion();
+  });
 }
